@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+* {
+    font-family: 'HarmonyOS_Sans_SC_Regular_MIN',
+        'Microsoft Yahei', 'PingFang SC', 'SimHei';
+}
+
+button {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0;
+}
+
+::selection {
+    background: #fff8;
+    color: white;
+}
