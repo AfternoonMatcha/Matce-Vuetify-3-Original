@@ -92,8 +92,8 @@ export default {
 
     // 控制台输出自定义样式的日志【type: 类型 desc: 描述 content: 内容】
     /* 使用例：
-            t.log(t.INFO, '路口列表在线状态检查完成！')
-            t.log(t.GET, '路口在线状态 | ' + crossing.location + '', result.result + ' ' + (result.result ? '在线 √' : '离线 ×')
+            t.log(t.INFO, '在线状态检查完成！')
+            t.log(t.GET, '在线状态 | ' + crossing.location + '', result.result + ' ' + (result.result ? '在线 √' : '离线 ×')
         */
     log(type, desc, ...content) {
         if (content === undefined || content.length === 0) {
