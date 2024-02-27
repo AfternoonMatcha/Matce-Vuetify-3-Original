@@ -11,7 +11,7 @@ import t from "@/utils/MatceTools.js"; //JS 方法工具箱
 const routes = setupLayouts(generatedRoutes)
 
 // console.clear()
-t.logs('Routers', routes)
+// t.logs('Routers', routes)
 
 const router = createRouter({
     history: createWebHistory(),
