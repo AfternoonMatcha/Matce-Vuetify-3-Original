@@ -17,6 +17,5 @@ button {
 }
 
 ::selection {
-    background: #fff8;
-    color: white;
+    background: hsla(0, 0%, 80%, 0.5);
 }
