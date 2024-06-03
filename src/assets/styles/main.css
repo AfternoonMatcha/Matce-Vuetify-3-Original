@@ -3,7 +3,7 @@ body {
 }
 
 * {
-    font-family: 'HarmonyOS_Sans_SC_Regular_MIN',
+    font-family: 'Altinn-DIN Exp', 'HarmonyOS_Sans_SC_Regular_MIN', 'HarmonyOS_Sans_SC_Regular',
         'Microsoft Yahei', 'PingFang SC', 'SimHei';
 }
 

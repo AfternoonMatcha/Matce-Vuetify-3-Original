@@ -2,16 +2,9 @@
     <div class="main">
         <div class="greeting">Welcome 欢迎</div>
         <div class="toolBox mt-10">
-            <v-card
-                height="100"
-                v-ripple="{ class: 'text-white' }"
-                v-for="(tool, i) in tools"
-                :key="i"
-                cols="auto"
-                class="tool d-flex elevation-0"
-                :prepend-icon="'mdi-' + tool.icon"
-                @click="router.push({ path: tool.url })"
-            >
+            <v-card height="100" v-ripple="{ class: 'text-white' }" v-for="(tool, i) in tools" :key="i" cols="auto"
+                class="tool d-flex elevation-0" :prepend-icon="'mdi-' + tool.icon"
+                @click="router.push({ path: tool.url })">
                 <div class="toolTitle">{{ tool.title }}</div>
             </v-card>
         </div>
@@ -26,7 +19,7 @@ const router = useRouter();
 const route = useRoute();
 
 const tools = ref([
-    { title: "主题切换", url: "test/test", icon: "palette-swatch" },
+    { title: "示例页面", url: "test/test", icon: "palette-swatch" },
     { title: "敬请期待", url: "", icon: "chevron-right" },
 ]);
 </script>

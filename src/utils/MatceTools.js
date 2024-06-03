@@ -1,4 +1,5 @@
 // MatceTools.js
+// Matce. 240315
 /* //////////// 工具方法集 //////////// */
 
 /*
@@ -13,8 +14,9 @@ mounted() {
 },
 */
 
-export default {
+import { toRaw } from "vue";
 
+export default {
     // 校验只要是数字（包含正负整数，0 以及正负浮点数）就返回 true
     isNumber(num) {
         return typeof num === 'number' && isFinite(num);
@@ -93,7 +95,7 @@ export default {
     // 控制台输出自定义样式的日志【type: 类型 desc: 描述 content: 内容】
     /* 使用例：
             t.log(t.INFO, '在线状态检查完成！')
-            t.log(t.GET, '在线状态 | ' + crossing.location + '', result.result + ' ' + (result.result ? '在线 √' : '离线 ×')
+            t.log(t.GET, '在线状态 | ' + device.location + '', result.result + ' ' + (result.result ? '在线 √' : '离线 ×')
         */
     log(type, desc, ...content) {
         if (content === undefined || content.length === 0) {
@@ -143,7 +145,7 @@ export default {
             'font-family: "Bahnschrift", "黑体"; background:' + colorUse[0] + ' ; padding: 4px; border-radius: 3px 0 0 3px;  color: white',
             'font-family: "Bahnschrift", "黑体"; background:' + colorUse[1] + ' ; padding: 4px; border-radius: 0 3px 3px 0;  color: white',
             'background:transparent',
-            ...content
+            ...content.map(item => toRaw(item))
         );
     },
 
@@ -153,7 +155,7 @@ export default {
             'font-family: "Bahnschrift", "黑体"; background:' + colorUse[0] + ' ; padding: 4px; border-radius: 3px 0 0 3px;  color: white',
             'font-family: "Bahnschrift", "黑体"; background:' + colorUse[1] + ' ; padding: 4px; border-radius: 0 3px 3px 0;  color: white',
             'background:transparent',
-            ...content
+            ...content.map(item => toRaw(item))
         );
     },
 
@@ -163,7 +165,7 @@ export default {
             'font-family: "Bahnschrift", "黑体"; background:' + colorUse[0] + ' ; padding: 4px; border-radius: 3px 0 0 3px;  color: white',
             'font-family: "Bahnschrift", "黑体"; background:' + colorUse[1] + ' ; padding: 4px; border-radius: 0 3px 3px 0;  color: white',
             'background:transparent',
-            ...content
+            ...content.map(item => toRaw(item))
         );
     },
 
