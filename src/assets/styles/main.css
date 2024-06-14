@@ -11,10 +11,10 @@ button {
     cursor: pointer;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 0 !important;
     height: 0;
-}
+} */
 
 ::selection {
     background: hsla(0, 0%, 80%, 0.5);

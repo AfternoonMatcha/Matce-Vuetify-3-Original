@@ -7,25 +7,21 @@ import { createVuetify } from 'vuetify'
 import colors from 'vuetify/lib/util/colors'
 
 const colorArray = colors
-
+// Translations provided by Vuetify
+import { zhHans } from 'vuetify/locale'
 const vuetify = createVuetify({
     // 在这里添加你的 Vuetify 配置选项
+    locale: {
+        locale: 'zhHans',
+        messages: { zhHans },
+    },
     theme: {
-        defaultTheme: 'light',
+        defaultTheme: 'dark',
         themes: {
-            customDark: {
-                dark: true,
-                colors: {
-                    background: colorArray.brown.darken3,
-                    surface: colorArray.brown.darken3,
-                    primary: colorArray.brown.base,
-                }
-            },
             customLight: {
                 dark: false,
                 colors: {
-                    background: colorArray.brown.darken1,
-                    surface: colorArray.brown.lighten5,
+                    surface: colorArray.brown.darken1,
                     primary: colorArray.brown.base,
                 }
             }

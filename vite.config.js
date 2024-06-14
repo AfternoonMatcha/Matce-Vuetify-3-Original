@@ -4,13 +4,15 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import path from 'path';
 import vuetify from 'vite-plugin-vuetify'
+import dotenv from 'dotenv';
 
+// 加载 .env 文件
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
-
         Pages(
             {
                 dirs: 'src/pages',  // 需要生成路由的文件目录
@@ -24,6 +26,7 @@ export default defineConfig({
 
     server: {
         host: '0.0.0.0',
+        port: process.env.VITE_APP_PORT,
         proxy: {
             // 指定代理所有/api请求
             '/api': {
@@ -46,7 +49,10 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@import "./src/assets/styles/main.scss";`
+                additionalData: `
+                @import "node_modules/vuetify/lib/styles/settings/_colors.scss";
+                @import "./src/assets/styles/main.scss";
+                `
             }
         }
     }

@@ -26,9 +26,10 @@ const tools = ref([
 
 <style lang="scss" scoped>
 .main {
-    padding: 60px;
+    padding: 19px;
 
     .greeting {
+        padding-top: 40px;
         font-size: 30px;
         font-weight: bold;
         overflow: hidden;

@@ -15,6 +15,12 @@ const routes = setupLayouts(generatedRoutes)
 
 // console.clear()
 // t.logs('Routers', routes)
+import config from "/package.json";
+t.logTitle([
+    "Matce-Vuetify-3-Original",
+    "By: Matce",
+    "Ver. " + config.version
+]);
 
 const router = createRouter({
     history: createWebHistory(),

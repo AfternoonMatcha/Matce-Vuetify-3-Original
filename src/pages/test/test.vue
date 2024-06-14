@@ -1,5 +1,5 @@
 <template>
-    <div style="display: flex; gap: 30px; flex-wrap: wrap; margin: 20px;">
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 20px;">
         <v-btn prepend-icon="mdi-palette-swatch" @click="changeTheme">切换主题</v-btn>
         <v-btn prepend-icon="mdi-logout-variant" @click="apiTest">接口请求</v-btn>
     </div>

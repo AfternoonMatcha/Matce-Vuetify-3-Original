@@ -3,12 +3,12 @@ import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', () => {
     const token = ref(
-         window.localStorage.getItem('token') ||
+        window.localStorage.getItem('token') ||
         '')
 
     const saveToken = (str) => {
         token.value = str
-         window.localStorage.setItem('token', str)
+        window.localStorage.setItem('token', str === null ? '' : str)
     }
 
     const profile = ref(null)

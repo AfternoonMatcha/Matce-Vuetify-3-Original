@@ -37,7 +37,7 @@ request.interceptors.response.use(
             // new URL(response.request.responseURL).pathname + "\n" + 
             error.message, {
         });
-        t.log(t.ERROR, errorTitle, error.message, new URL(response.request.responseURL).pathname, response)
+        t.log(t.ERROR, errorTitle, error)
     }
 );
 

@@ -1,7 +1,7 @@
 {
     "name": "Matce-Vuetify-3-Original",
     "private": false,
-    "version": "0.2.0 Beta",
+    "version": "0.2.1",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -15,6 +15,7 @@
         "@vuelidate/validators": "^2.0.4",
         "@vuepic/vue-datepicker": "^8.7.0",
         "axios": "^1.7.2",
+        "dotenv": "^16.4.5",
         "echarts": "^5.5.0",
         "pinia": "^2.1.7",
         "pinia-plugin-persistedstate": "^3.2.1",

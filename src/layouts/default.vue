@@ -41,7 +41,7 @@ let drawer = ref(null);
                 style="cursor: pointer">Matce-Vuetify-3-Original</v-app-bar-title>
         </v-app-bar>
 
-        <v-main style="min-height: 100vh">
+        <v-main>
             <div class="layerMain">
                 <div class="layerContainer">
                     <router-view />
@@ -53,7 +53,7 @@ let drawer = ref(null);
 
 <style lang="scss" scoped>
 .layerMain {
-    height: calc(100% - 20px);
+    height: 100%;
     display: flex;
     justify-content: center;
 
@@ -61,9 +61,6 @@ let drawer = ref(null);
         height: 100%;
         flex: 1;
         max-width: 1000px;
-        margin: 10px;
-        overflow-x: hidden;
-        overflow-y: scroll;
     }
 }
 </style>
