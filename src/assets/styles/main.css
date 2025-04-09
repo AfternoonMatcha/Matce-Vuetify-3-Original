@@ -11,11 +11,22 @@ button {
     cursor: pointer;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 0 !important;
     height: 0;
-} */
+}
 
 ::selection {
-    background: hsla(0, 0%, 80%, 0.5);
+    color: rgb(var(--v-theme-on-primary));
+    background: rgba(var(--v-theme-primary), .8);
+}
+
+:root {
+    --toastify-color-info: rgb(var(--v-theme-primary));
+    --toastify-color-success: rgb(var(--v-theme-success));
+    --toastify-color-warning: rgb(var(--v-theme-warning));
+}
+
+.v-overlay__content {
+    margin: 0 !important;
 }

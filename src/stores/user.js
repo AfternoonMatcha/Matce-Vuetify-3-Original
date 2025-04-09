@@ -6,16 +6,16 @@ export const useUserStore = defineStore('user', () => {
         window.localStorage.getItem('token') ||
         '')
 
-    const saveToken = (str) => {
+    const setToken = (str) => {
         token.value = str
-        window.localStorage.setItem('token', str === null ? '' : str)
+        window.localStorage.setItem('token', str || "")
     }
 
     const profile = ref(null)
 
-    const saveProfile = (obj) => {
+    const setProfile = (obj) => {
         profile.value = obj
     }
 
-    return { token, saveToken, profile, saveProfile }
+    return { token, setToken, profile, setProfile }
 });

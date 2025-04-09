@@ -6,6 +6,7 @@ import App from './App.vue'
 import pinia from './stores'
 import vuetify from '@/plugins/vuetify'
 import Vue3Toasity from 'vue3-toastify';
+import { Icon } from '@iconify/vue';
 
 import 'vue3-toastify/dist/index.css'
 
@@ -43,9 +44,50 @@ app.use(
         newestOnTop: true // 新的通知是否显示在顶部，如果为 true，新的通知将显示在旧的通知之上
     },
 )
-
-app.mount('#app')
+app.component("iconify", Icon);
 
 // 引入字体
 import '@/assets/fonts/fonts.css';
 import '@/assets/styles/main.css';
+
+import { getUserProfile } from "@/api/main";
+import { useUserStore } from "@/stores/user";
+const userStore = useUserStore();
+import { toast } from "vue3-toastify";
+
+
+if (import.meta.env.VITE_APP_NO_NEED_LOGIN === "false") {
+    let loadingToast
+    const loadingDoneConfig = { autoClose: 5000, closeOnClick: true, isLoading: false } // 加载结束后提示的通用配置项
+
+    if (!userStore.token) { // 如果 userStore 中的 token 为空
+        loadingToast = toast.loading("正在登录，请稍候片刻 ……"); // 显示登录加载提示
+        if (import.meta.env.VITE_APP_CUSTOM_TOKEN !== "") {
+            userStore.setToken(import.meta.env.VITE_APP_CUSTOM_TOKEN); // 使用环境变量中的自定义 token
+        } else {
+            if (!JSON.parse(import.meta.env.VITE_APP_NO_LOGIN_PAGES).some(path => window.location.href.includes(path))) {
+                router.push({ path: "/login" })
+            }
+        }
+        toast.remove()
+    } else {
+        await getUserProfile().then(async (res) => {
+            if (res && res.code === 200) {
+                userStore.setProfile(res.data)
+                t.log(t.GET, "获取用户配置文件", res.data)
+                if (userStore.token !== import.meta.env.VITE_APP_CUSTOM_TOKEN) {
+                    toast.update(loadingToast, { // 显示成功信息
+                        render: "欢迎您！"
+                            + (userStore.profile.user.nickName || userStore.profile.user.userName || "用户")
+                        // + "（" + (userStore.profile.roleGroup.replace(",", "、") || "未知用户组") + "）"
+                        , ...loadingDoneConfig, type: "info", autoClose: 2000
+                    })
+                }
+            } else {
+                toast.remove(loadingToast)  // 移除加载提示
+            }
+        })
+    }
+}
+
+app.mount('#app')

@@ -1,40 +1,32 @@
 <template>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 20px;">
-        <v-btn prepend-icon="mdi-palette-swatch" @click="changeTheme">切换主题</v-btn>
-        <v-btn prepend-icon="mdi-logout-variant" @click="apiTest">接口请求</v-btn>
+    <div class="main">
+        <v-btn @click="toggleTheme">切换主题</v-btn>
     </div>
 </template>
 
 <script setup>
-import t from "@/utils/MatceTools.js";
+import { onMounted } from 'vue';
+
 import { useTheme } from "vuetify";
+import { useMainStore } from "@/stores/main";
+const mainStore = useMainStore();
+
+onMounted(() => {
+    mainStore.setTitle("测试");
+    mainStore.setTheme([]);
+});
 
 const theme = useTheme();
 
-const changeTheme = () => {
+function toggleTheme() {
     theme.global.name.value = theme.global.current.value.dark
-        ? // ? "customLight"
-        // : "customDark";
-        "light"
+        ? "customLight"
         : "dark";
 }
-
-import { getSample, getURLSample, postSample } from "@/api/main";
-
-const apiTest = () => {
-    postSample({ param: "test" }).then((res) => {
-        const logName = "POST 请求示例"
-        t.log(t.GET, logName, res.data);
-    });
-
-    getSample({ data: "test" }).then((res) => {
-        const logName = "GET 请求示例"
-        t.log(t.GET, logName, res.data);
-    });
-
-    getURLSample("test").then((res) => {
-        const logName = "GET 页面参数请求示例"
-        t.log(t.GET, logName, res.data);
-    });
-}
 </script>
+
+<style lang="scss" scoped>
+.main {
+    padding: 20px;
+}
+</style>

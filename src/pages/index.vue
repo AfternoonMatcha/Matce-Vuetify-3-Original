@@ -1,7 +1,7 @@
 <template>
     <div class="main">
-        <div class="greeting">Welcome 欢迎</div>
-        <div class="toolBox mt-10">
+        <div class="greeting">Welcome!</div>
+        <div class="toolBox">
             <v-card height="100" v-ripple="{ class: 'text-white' }" v-for="(tool, i) in tools" :key="i" cols="auto"
                 class="tool d-flex elevation-0" :prepend-icon="'mdi-' + tool.icon"
                 @click="router.push({ path: tool.url })">
@@ -14,6 +14,12 @@
 <script setup>
 import { ref } from "vue";
 import t from "@/utils/MatceTools.js";
+import { useMainStore } from "@/stores/main";
+const mainStore = useMainStore();
+
+mainStore.setTitle("首页");
+// mainStore.setTheme(["hideNav"])
+
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();
@@ -26,14 +32,13 @@ const tools = ref([
 
 <style lang="scss" scoped>
 .main {
-    padding: 19px;
+    padding: 20px;
 
     .greeting {
-        padding-top: 40px;
+        margin-top: 10vh;
+        margin-bottom: 20px;
         font-size: 30px;
-        font-weight: bold;
         overflow: hidden;
-        margin: -10px 0;
     }
 
     .toolBox {

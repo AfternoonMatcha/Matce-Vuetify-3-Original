@@ -21,8 +21,11 @@ const vuetify = createVuetify({
             customLight: {
                 dark: false,
                 colors: {
-                    surface: colorArray.brown.darken1,
-                    primary: colorArray.brown.base,
+                    background: "#F6F6F6",
+                    surface: "#FFFFFF",
+                    // primary: "#94080B",
+                    // success: "#34B000",
+                    // warning: "#CB7700",
                 }
             }
         }

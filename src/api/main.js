@@ -1,27 +1,58 @@
 import request from "../utils/request";
 
-// POST 请求示例
-export const postSample = (query) => {
+// 登录与注册 ///////////////////////////////////////////////
+
+// 登录
+export const login = (query) => {
     return request({
-        url: '/main/postSample',
+        url: "/auth/login",
+        method: "post",
+        data: query,
+    })
+}
+
+// 注册
+export const register = (query) => {
+    return request({
+        url: '/system/user',
         data: query,
         method: 'post'
     })
 }
 
-// GET 请求示例
-export const getSample = (query) => {
+// 获取部门列表
+export const getDeptList = (query) => {
     return request({
-        url: '/main/getSample',
+        url: '/system/dept/list',
         params: query,
         method: 'get'
     })
 }
 
-// GET 页面参数请求示例
-export const getURLSample = (data) => {
+// 获取用户配置文件
+export const getUserProfile = () => {
     return request({
-        url: '/main/getURLSample/' + data,
-        method: 'get'
+        url: "/system/user/profile",
+        method: "get"
+    })
+}
+
+// 根据字典类型查询字典数据信息
+export const getDict = (dictType) => {
+    return request({
+        url: "/system/dict/data/type/" + dictType,
+        method: "get"
+    })
+}
+
+// 单个文件上传
+export const fileUpload = (query) => {
+    return request({
+        url: "/system/oss/upload",
+        method: "post",
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        data: query
     })
 }
