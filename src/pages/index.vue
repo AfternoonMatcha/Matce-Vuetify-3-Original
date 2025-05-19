@@ -32,20 +32,19 @@ const tools = ref([
 
 <style lang="scss" scoped>
 .main {
+    height: 100%;
     padding: 20px;
 
     .greeting {
         margin-top: 10vh;
         margin-bottom: 20px;
         font-size: 30px;
-        overflow: hidden;
     }
 
     .toolBox {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        overflow: hidden;
 
         .tool {
             width: 100%;

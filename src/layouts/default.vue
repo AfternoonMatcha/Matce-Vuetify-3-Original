@@ -2,7 +2,9 @@
     <v-layout>
         <v-main style="min-height: 100vh; transition: none">
             <div class="layerMain" :class="mainStore.theme">
-                <div class="layerTitle">{{ mainStore.title }}</div>
+                <div class="layerTitle">
+                    {{ mainStore.title }}
+                </div>
                 <div class="layerContainer">
                     <router-view v-slot="{ Component }">
                         <v-scroll-x-transition>
@@ -72,7 +74,6 @@ let layerNavData = [
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     transition: .2s ease;
     color: rgb(var(--v-theme-on-surface));
     overflow: hidden;
@@ -81,8 +82,9 @@ let layerNavData = [
         flex: 1;
         width: 100%;
         padding: 0 calc(calc(100vw - $contentMaxWidth) / 2);
-        max-height: calc(100vh - $titleHeight);
+        margin-bottom: $navHeight;
         position: relative;
+        transition: margin-bottom .2s ease;
 
         &::before {
             // 背景层
@@ -93,18 +95,20 @@ let layerNavData = [
             width: 100%;
             height: 100%;
             background: rgba(var(--v-theme-background));
+            transition: .2s ease;
             z-index: -1;
         }
 
         .layerContent {
             position: absolute;
             max-width: $contentMaxWidth;
+            // height: 100%;
             width: 100vw;
-            height: 100%;
             overflow-y: scroll;
-            padding-bottom: $navHeight;
             display: flex;
             flex-direction: column;
+            // background: rgb(var(--v-theme-primary), .5);
+            -webkit-mask: linear-gradient(to bottom, #FFF0 0, #FFF $contentFadeHight, #FFF calc(100% - $contentFadeHight), #FFF0 100%);
         }
     }
 
@@ -121,17 +125,6 @@ let layerNavData = [
         position: relative;
         z-index: 3000;
         transition: .2s ease;
-
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: -$contentFadeHight;
-            left: 0;
-            right: 0;
-            height: $contentFadeHight;
-            transition: .2s ease;
-            background: linear-gradient(to bottom, rgb(var(--v-theme-background)), transparent);
-        }
     }
 
     .layerNav {
@@ -144,18 +137,7 @@ let layerNavData = [
         width: 100%;
         line-height: 1;
         z-index: 100;
-        transition: background-color .2s ease;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: -$contentFadeHight;
-            left: 0;
-            right: 0;
-            height: $contentFadeHight;
-            transition: .2s ease;
-            background: linear-gradient(to top, rgb(var(--v-theme-background)), transparent);
-        }
+        transition: margin .2s ease, background-color .2s ease;
 
         &Box {
             display: flex;
@@ -202,11 +184,10 @@ let layerNavData = [
     }
 
     .layerContainer {
-        max-height: calc(100vh - $titleHeight);
         margin-bottom: 0;
 
         .layerContent {
-            padding-bottom: 0;
+            -webkit-mask: linear-gradient(to bottom, #FFF0 0, #FFF $contentFadeHight, #FFF $contentFadeHight);
         }
     }
 }
@@ -218,8 +199,19 @@ let layerNavData = [
         opacity: 0;
     }
 
+    .layerContent {
+        -webkit-mask: linear-gradient(to bottom, #FFF calc(100% - $contentFadeHight), #FFF0 100%);
+    }
+}
+
+.hideNav.hideTitle {
     .layerContainer {
-        max-height: 100vh;
+        max-height: 100%;
+    }
+
+    .layerContent {
+        -webkit-mask: none;
+        height: 100%;
     }
 }
 </style>

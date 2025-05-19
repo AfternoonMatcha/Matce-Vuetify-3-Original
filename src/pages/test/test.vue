@@ -28,5 +28,6 @@ function toggleTheme() {
 <style lang="scss" scoped>
 .main {
     padding: 20px;
+    height: 100%;
 }
 </style>

@@ -11,7 +11,10 @@ import EmptyCard from "@/components/emptyCard.vue";
 import { useMainStore } from "@/stores/main";
 const mainStore = useMainStore();
 mainStore.setTitle("提示");
-mainStore.setTheme(["hideTitle", "hideNav"])
+mainStore.setTheme([
+    "hideTitle",
+    // "hideNav"
+])
 const getMsg = ref(decodeURIComponent(new URLSearchParams(window.location.search).get('msg')))
 const msg = ref(
     getMsg.value !== "null" && getMsg.value !== ""
@@ -22,9 +25,7 @@ const msg = ref(
 
 <style lang="scss" scoped>
 .page {
-    bottom: 0;
-    position: fixed !important;
-    height: 100vh;
+    height: 100%;
     display: flex;
     align-items: center;
 
