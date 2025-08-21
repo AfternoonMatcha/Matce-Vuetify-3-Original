@@ -18,7 +18,7 @@
                             @click="navItem.method ? navItem.method() : $router.push({ path: navItem.url })"
                             :Active="urlNow === navItem.url ? true : null" v-ripple="{ class: 'text-primary' }">
                             <div class="layerNavBoxItemIcon">
-                                <iconify :icon="navItem.icon" height="22px" />
+                                <div :class="navItem.icon" style="font-size: 22px"></div>
                             </div>
                             <div class="layerNavBoxItemText">{{ navItem.text }}</div>
                         </div>
@@ -52,11 +52,11 @@ import config from "/package.json";
 let version = config.version;
 
 let layerNavData = [
-    { icon: "mdi:home", text: "首页", url: "/" },
-    { icon: "mdi:settings", text: "测试", url: "/test/test" },
-    { icon: "mdi:forbid", text: "空白", url: "/notAllowed" },
+    { icon: "i-material-symbols:home-rounded", text: "首页", url: "/" },
+    { icon: "i-material-symbols:settings-rounded", text: "测试", url: "/test/test" },
+    { icon: "i-material-symbols:ad-off-rounded", text: "空白", url: "/notAllowed" },
     {
-        icon: "mdi:logout-variant",
+        icon: "i-material-symbols:right-panel-close-rounded",
         text: "登出",
         method: () => {
             userStore.setToken(null);

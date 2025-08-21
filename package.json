@@ -1,6 +1,6 @@
 {
     "name": "Matce-Vuetify-3-Original",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -10,16 +10,16 @@
         "sbuild": "set NODE_OPTIONS=\"--no-warnings\" & yarn build\n"
     },
     "dependencies": {
-        "@iconify/vue": "^5.0.0",
+        "@iconify-json/material-symbols": "^1.2.32",
         "@vuelidate/core": "^2.0.3",
         "@vuelidate/validators": "^2.0.4",
-        "@vuepic/vue-datepicker": "^11.0.2",
         "axios": "^1.11.0",
         "dotenv": "^17.2.1",
         "echarts": "^6.0.0",
         "pinia": "^3.0.3",
         "pinia-plugin-persistedstate": "^4.5.0",
         "sass": "^1.90.0",
+        "unocss": "^66.4.2",
         "vite-plugin-vuetify": "^2.1.2",
         "vue": "^3.5.18",
         "vue-router": "^4.5.1",

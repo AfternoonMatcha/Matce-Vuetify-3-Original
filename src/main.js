@@ -6,7 +6,7 @@ import App from './App.vue'
 import pinia from './stores'
 import vuetify from '@/plugins/vuetify'
 import Vue3Toasity from 'vue3-toastify';
-import { Icon } from '@iconify/vue';
+import "virtual:uno.css";
 
 import 'vue3-toastify/dist/index.css'
 
@@ -44,7 +44,6 @@ app.use(
         newestOnTop: true // 新的通知是否显示在顶部，如果为 true，新的通知将显示在旧的通知之上
     },
 )
-app.component("iconify", Icon);
 
 // 引入字体
 import '@/assets/fonts/fonts.css';

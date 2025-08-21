@@ -5,6 +5,7 @@ import Layouts from "vite-plugin-vue-layouts"
 import path from "path"
 import vuetify from "vite-plugin-vuetify"
 import dotenv from "dotenv"
+import UnoCSS from "unocss/vite"
 
 // 加载 .env 文件
 dotenv.config({ path: path.resolve(__dirname, ".env") })
@@ -23,6 +24,7 @@ export default defineConfig({
         ),
         Layouts(),
         vuetify({ autoImport: true }), // Enabled by default
+        UnoCSS()
     ],
 
     server: {

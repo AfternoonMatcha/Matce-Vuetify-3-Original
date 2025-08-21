@@ -19,9 +19,10 @@ onMounted(() => {
 const theme = useTheme();
 
 function toggleTheme() {
-    theme.global.name.value = theme.global.current.value.dark
-        ? "customLight"
-        : "dark";
+    theme.change(
+        theme.global.current.value.dark
+            ? "customLight"
+            : "dark");
 }
 </script>
 
