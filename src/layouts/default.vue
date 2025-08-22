@@ -54,7 +54,7 @@ let version = config.version;
 let layerNavData = [
     { icon: "i-material-symbols:home-rounded", text: "首页", url: "/" },
     { icon: "i-material-symbols:settings-rounded", text: "测试", url: "/test/test" },
-    { icon: "i-material-symbols:ad-off-rounded", text: "空白", url: "/notAllowed" },
+    { icon: "i-material-symbols:ad-off-rounded", text: "空页", url: "/notAllowed" },
     {
         icon: "i-material-symbols:right-panel-close-rounded",
         text: "登出",
