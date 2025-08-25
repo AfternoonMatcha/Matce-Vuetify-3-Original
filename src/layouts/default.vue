@@ -7,9 +7,11 @@
                 </div>
                 <div class="layerContainer">
                     <router-view v-slot="{ Component }">
-                        <v-scroll-x-transition>
-                            <component :is="Component" class="layerContent" />
-                        </v-scroll-x-transition>
+                        <van-config-provider :theme="theme.global.name === 'dark' ? 'dark' : null">
+                            <v-scroll-x-transition>
+                                <component :is="Component" class="layerContent" />
+                            </v-scroll-x-transition>
+                        </van-config-provider>
                     </router-view>
                 </div>
                 <div class="layerNav" v-if="!urlNow.includes('/portrait/notAllowed')">
@@ -24,19 +26,36 @@
                         </div>
                     </div>
                 </div>
+                <van-overlay :show="mainStore.loadingStatus" ref="loading" class="loading"
+                    @click="showChooseToHideLoading = true">
+                    <div class="loadingCard">
+                        <van-loading class="loadingCardIcon" type="spinner" />
+                        <div class="loadingCardText">
+                            {{ mainStore.loadingText }}
+                        </div>
+                    </div>
+                </van-overlay>
+
+                <van-dialog v-model:show="showChooseToHideLoading" message="确认要离开当前状态显示吗？" :z-index="layerLoadingZindex"
+                    show-cancel-button @confirm="() => {
+                        mainStore.loadingDone();
+                    }" />
             </div>
         </v-main>
     </v-layout>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import t from "@/utils/MatceTools.js"; //JS 方法工具箱
 import { useUserStore } from "@/stores/user";
 import { useMainStore } from "@/stores/main";
 const userStore = useUserStore();
 const mainStore = useMainStore();
+
+import { useTheme } from "vuetify";
+const theme = ref(useTheme());
 
 const route = useRoute();
 const router = useRouter();
@@ -67,6 +86,36 @@ let layerNavData = [
     }
 ]
 
+const showChooseToHideLoading = ref(false);
+
+const layerLoadingZindex = ref(1);
+watch(() => mainStore.loadingStatus, (newLoadingStatus) => {
+    if (newLoadingStatus === false) {
+        showChooseToHideLoading.value = false;
+    } else {
+        // 使用 nextTick 确保在 DOM 更新后运行
+        nextTick(() => {
+            // 获取页面所有元素
+            const elements = document.body.querySelectorAll('*');
+            let maxZIndex = 0;
+
+            // 遍历所有元素寻找最大 z-index
+            for (const el of elements) {
+                const style = window.getComputedStyle(el);
+                const zIndex = parseFloat(style.zIndex);
+
+                if (!Number.isNaN(zIndex) && zIndex > maxZIndex) {
+                    maxZIndex = zIndex;
+                }
+            }
+
+            // 设置 CSS 变量值（确保至少为 1）
+            const finalZIndex = Math.max(maxZIndex, 1);
+            layerLoadingZindex.value = finalZIndex;
+            document.documentElement.style.setProperty("--layer-loading-z-index", finalZIndex);
+        });
+    }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -168,6 +217,32 @@ let layerNavData = [
                     color: rgb(var(--v-theme-primary));
                 }
             }
+        }
+    }
+
+    .loading {
+        z-index: var(--layer-loading-z-index);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &Card {
+            border-radius: 5px;
+            min-height: 165px;
+            min-width: 165px;
+            max-width: calc(100vw - $layerSwipeWidth * 4);
+            max-height: calc(100vh - $layerSwipeWidth * 4);
+            padding: 30px 18px;
+            overflow: hidden;
+            text-align: center;
+            background: rgb(var(--v-theme-surface));
+            color: rgba(var(--v-theme-on-surface), .5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            line-height: 1.4;
         }
     }
 }

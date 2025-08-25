@@ -7,7 +7,8 @@ import pinia from './stores'
 import vuetify from '@/plugins/vuetify'
 import Vue3Toasity from 'vue3-toastify';
 import "virtual:uno.css";
-
+import Vant from 'vant';
+import 'vant/lib/index.css';
 import 'vue3-toastify/dist/index.css'
 
 import t from "@/utils/MatceTools.js"; // JS 方法工具箱
@@ -32,6 +33,7 @@ const app = createApp(App)
 app.use(router)
 app.use(pinia)
 app.use(vuetify)
+app.use(Vant)
 app.use(
     Vue3Toasity,
     {

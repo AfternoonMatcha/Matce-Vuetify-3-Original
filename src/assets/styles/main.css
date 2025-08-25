@@ -25,8 +25,73 @@ button {
     --toastify-color-info: rgb(var(--v-theme-primary));
     --toastify-color-success: rgb(var(--v-theme-success));
     --toastify-color-warning: rgb(var(--v-theme-warning));
+
+    --van-dialog-message-font-size: 16px;
+    --van-primary-color: rgb(var(--v-theme-primary));
 }
 
 .v-overlay__content {
     margin: 0 !important;
+}
+
+.v-btn {
+    text-indent: 0;
+}
+
+.v-btn .v-btn__content {
+    transition: .2s ease;
+}
+
+.v-btn__prepend-icon {
+    font-size: calc(var(--v-btn-size) + 2.5px);
+    transition: .2s ease;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .Toastify__toast-container--top-center,
+    .Toastify__toast-container--top-left,
+    .Toastify__toast-container--top-right {
+        top: calc(var(--status-bar-height) + 12px);
+    }
+
+}
+
+.van-popup {
+    transition: .2s ease !important;
+}
+
+.van-popup--bottom {
+    max-height: calc(100% - var(--status-bar-height));
+    display: flex;
+    flex-direction: column;
+}
+
+.van-popup-title {
+    min-height: calc(var(--van-popup-close-icon-size) + var(--van-popup-close-icon-margin) * 2);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.van-popup-title[left] {
+    justify-content: flex-start;
+    padding-left: var(--van-popup-close-icon-margin);
+}
+
+.van-popup-content {
+    padding: var(--van-popup-close-icon-margin);
+    padding-top: 0;
+    overflow-y: auto;
+}
+
+.van-popup--bottom .van-popup-content {
+    flex: 1;
+}
+
+.van-popup-field {
+    --van-field-label-width: 3em;
+    font-size: 16px;
 }

@@ -1,6 +1,6 @@
 {
     "name": "Matce-Vuetify-3-Original",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -20,6 +20,7 @@
         "pinia-plugin-persistedstate": "^4.5.0",
         "sass": "^1.90.0",
         "unocss": "^66.4.2",
+        "vant": "^4.9.21",
         "vite-plugin-vuetify": "^2.1.2",
         "vue": "^3.5.18",
         "vue-router": "^4.5.1",

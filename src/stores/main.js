@@ -8,5 +8,10 @@ export const useMainStore = defineStore("main", () => {
     const theme = ref([]);
     const setTheme = (newTheme) => { theme.value = newTheme };
 
-    return { title, setTitle, theme, setTheme };
+    const loadingStatus = ref(null);
+    const loadingText = ref("");
+    const loading = (newVal) => { loadingStatus.value = true; loadingText.value = newVal || "载入中" };
+    const loadingDone = (newVal) => { loadingStatus.value = false; newVal ? loadingText.value = newVal : null };
+
+    return { title, setTitle, theme, setTheme, loadingStatus, loadingText, loading, loadingDone };
 });
